@@ -17,6 +17,7 @@ public class HeartRate {
     String rangeNames[] = {"Resting", "Moderate", "Endurance", "Aerobic","Anaerobic","Red zone"};
     String rangeDescriptions[] = {"In active or resting", "Weight maintenance and warm up", "Fitness and fat burning", "Cardio training and endurance","Hardcore interval training","Maximum Effort"};
     Double rangeBounds[] = {.50, .60, .70, .80, .90, 1.00};
+    String rangeColor[];
 
     public HeartRate(Integer heartRate, Integer age) {
         this.pulse = heartRate;
@@ -50,6 +51,33 @@ public class HeartRate {
     public String getRangeDescrtiption() {
         calcHeartRange(age);
         return rangeDescriptions[range];
+    }
+
+    /**
+     * This is called to set the background color for the given range
+     *
+     * @return int
+     */
+    public int getRangeColor() {
+        calcHeartRange(age);
+        int retcol = 0;
+
+        switch (range) {
+            case 0:retcol = R.color.blue;
+                break;
+            case 1:retcol = R.color.green;
+                break;
+            case 2:retcol = R.color.yellow;
+                break;
+            case 3:retcol = R.color.orange;
+                break;
+            case 4:retcol = R.color.red;
+                break;
+            case 5:retcol = R.color.white;
+                break;
+        }
+
+        return retcol;
     }
 
     public Integer getPulse() {

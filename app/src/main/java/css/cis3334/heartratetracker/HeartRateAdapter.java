@@ -5,7 +5,9 @@ package css.cis3334.heartratetracker;
  */
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +53,17 @@ public class HeartRateAdapter  extends ArrayAdapter<HeartRate> {
         View view = inflater.inflate(R.layout.heart_rate_row, null);
         //get the heart rate we are displaying
         HeartRate hr = hrList.getHeartRate(position);
+        int bkgrnd = hr.getRangeColor();
 
+        // fill and format rows
         TextView tvPulse=(TextView)view.findViewById(R.id.textViewPulse);
+        TextView tvRange=(TextView)view.findViewById(R.id.textViewRange);
         tvPulse.setText(hr.getPulse().toString());
+        tvRange.setText(hr.getRangeDescrtiption());
+        tvPulse.setBackgroundColor(ContextCompat.getColor(context,bkgrnd));
+        tvRange.setBackgroundColor(ContextCompat.getColor(context,bkgrnd));
+        TextViewCompat.setTextAppearance(tvRange,R.style.DescTheme);
+        TextViewCompat.setTextAppearance(tvPulse,R.style.RateTheme);
 
         return(view);
     }
